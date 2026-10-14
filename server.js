@@ -22,7 +22,7 @@ app.use(session({
     }
 }));
 
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public")));
 
 function requireCustomer(req, res, next) {
     if (!req.session.customer) {
