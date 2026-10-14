@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBite - Food Delivery</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a class="brand" href="/">QuickBite</a>
+        <div class="nav-links">
+            <a href="#restaurants">Restaurants</a>
+            <a href="#cart">Cart <span id="cartCount" class="badge">0</span></a>
+            <a href="#orders">My Orders</a>
+            <a href="#account">Account</a>
+            <a href="/admin.html">Admin</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <p class="eyebrow">FOOD DELIVERY MANAGEMENT SYSTEM</p>
+            <h1>Good food.<br><span>Delivered fast.</span></h1>
+            <p>Order from your favourite restaurants, manage your cart, receive a bill, track orders and leave a review.</p>
+            <a class="btn" href="#restaurants">Explore Restaurants</a>
+        </div>
+        <div class="hero-card">
+            <div class="hero-icon">🍔</div>
+            <h3>QuickBite</h3>
+            <p>Powered by MySQL</p>
+        </div>
+    </section>
+
+    <section id="account" class="section">
+        <div class="section-title">
+            <div>
+                <p class="eyebrow">YOUR ACCOUNT</p>
+                <h2 id="welcomeText">Login to start ordering</h2>
+            </div>
+            <button id="logoutBtn" class="btn danger hidden">Logout</button>
+        </div>
+
+        <div id="authArea" class="grid-2">
+            <form id="loginForm" class="card">
+                <h3>Login</h3>
+                <input name="email" type="email" placeholder="Email" required>
+                <input name="password" type="password" placeholder="Password" required>
+                <button class="btn" type="submit">Login</button>
+                <p id="loginMsg" class="message"></p>
+            </form>
+
+            <form id="registerForm" class="card">
+                <h3>Create Account</h3>
+                <input name="name" placeholder="Full name" required>
+                <input name="email" type="email" placeholder="Email" required>
+                <input name="phone" placeholder="Phone number" required>
+                <input name="password" type="password" placeholder="Password" required>
+                <input name="address" placeholder="Delivery address" required>
+                <div class="grid-2 small-grid">
+                    <input name="city" placeholder="City">
+                    <input name="pincode" placeholder="Pincode">
+                </div>
+                <button class="btn" type="submit">Register</button>
+                <p id="registerMsg" class="message"></p>
+            </form>
+        </div>
+
+        <div id="profileArea" class="card hidden">
+            <h3>My Profile</h3>
+            <div id="profileInfo"></div>
+
+            <h4>Add another delivery address</h4>
+            <form id="addressForm" class="grid-2">
+                <input name="address" placeholder="Address" required>
+                <input name="city" placeholder="City">
+                <input name="pincode" placeholder="Pincode">
+                <button class="btn" type="submit">Save Address</button>
+            </form>
+            <p id="addressMsg" class="message"></p>
+        </div>
+    </section>
+
+    <section id="restaurants" class="section">
+        <div class="section-title">
+            <div>
+                <p class="eyebrow">DISCOVER</p>
+                <h2>Restaurants</h2>
+            </div>
+            <button class="btn secondary" onclick="loadRestaurants()">Refresh</button>
+        </div>
+        <div id="restaurantList" class="restaurant-grid"></div>
+    </section>
+
+    <section id="menu" class="section hidden">
+        <div class="section-title">
+            <div>
+                <p class="eyebrow">MENU</p>
+                <h2 id="menuTitle">Menu</h2>
+            </div>
+        </div>
+        <div id="menuList" class="menu-grid"></div>
+    </section>
+
+    <section id="cart" class="section">
+        <div class="section-title">
+            <div>
+                <p class="eyebrow">ORDER</p>
+                <h2>Your Cart</h2>
+            </div>
+            <button class="btn secondary" onclick="clearCart()">Clear Cart</button>
+        </div>
+        <div id="cartList" class="card"></div>
+    </section>
+
+    <section id="checkout" class="section hidden">
+        <div class="section-title">
+            <div>
+                <p class="eyebrow">CHECKOUT</p>
+                <h2>Billing & Payment</h2>
+            </div>
+        </div>
+
+        <div class="checkout-grid">
+            <div class="card">
+                <h3>Delivery Address</h3>
+                <select id="addressSelect"></select>
+
+                <h3>Payment Method</h3>
+                <select id="paymentMethod">
+                    <option value="UPI">UPI</option>
+                    <option value="Card">Card</option>
+                    <option value="Cash">Cash on Delivery</option>
+                </select>
+
+                <button id="placeOrderBtn" class="btn full">Place Order</button>
+                <p id="checkoutMsg" class="message"></p>
+            </div>
+
+            <div id="billPreview" class="invoice"></div>
+        </div>
+    </section>
+
+    <section id="orders" class="section">
+        <div class="section-title">
+            <div>
+                <p class="eyebrow">HISTORY</p>
+                <h2>My Orders</h2>
+            </div>
+            <button class="btn secondary" onclick="loadOrders()">Refresh</button>
+        </div>
+        <div id="ordersList"></div>
+    </section>
+</main>
+
+<footer>
+    <p>QuickBite • DBMS Project • MySQL + Node.js + Express</p>
+</footer>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
